@@ -1,0 +1,23 @@
+var gr = new GlideRecord('sn_customerservice_case');
+gr.addQuery('assignment_group', '557fd6f2dbd28110dfb5a7fd139619c1'); // replace with your assignment group's sys_id 
+gr.addQuery('short_description', 'CONTAINS', 'New Item Delivered');
+var stateCondition = gr.addQuery('state', 1); // Assuming 'New' state corresponds to 1
+stateCondition.addOrCondition('state', 18); // Assuming 'Awaiting Information' state corresponds to 4
+stateCondition.addOrCondition('state', 10); // Assuming 'Open' state corresponds to 2
+gr.query();
+
+while (gr.next()) {
+    gr.state = '6'; // replace with your resolved state value
+    gr.type = 'mail'; // replace with your type
+    gr.category = '9'; // replace with your primary category
+    gr.subcategory = '51'; // replace with your secondary category
+    gr.close_notes = 'ecm dup'; // Set resolution notes
+    gr.close_code = '8'; // Set resolution code
+    gr.update();
+
+    var gr2 = new GlideRecord('m2m_kb_task'); // Create a new record in m2m_kb_task
+    gr2.initialize();
+    gr2.kb_knowledge = '1ef23328db891150dfb5a7fd1396190c'; // replace with your KB article's sys_id
+    gr2.task = gr.sys_id; // Associate with current case
+    gr2.insert();
+}
