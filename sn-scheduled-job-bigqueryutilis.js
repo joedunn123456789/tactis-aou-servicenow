@@ -75,7 +75,7 @@ for (var x = 0; x < rowsRaxData.length; x++) {
 		user.u_string_6 = rowsRaxData[x].f[4].v; //email
 		user.u_string_5 = rowsRaxData[x].f[5].v; //phone
 		user.u_string_7 = rowsRaxData[x].f[6].v; //system
-		user.u_zipcode = rowsRaxData[x].f[7].v; //zipcode
+		//user.u_zipcode = rowsRaxData[x].f[7].v; //zipcode
 		user.update();
 	}
 
@@ -91,7 +91,7 @@ for (var x = 0; x < rowsRaxData.length; x++) {
 		insertUser.u_string_6 = rowsRaxData[x].f[4].v; //email
 		insertUser.u_string_5 = rowsRaxData[x].f[5].v; //phone number
 		insertUser.u_string_7 = rowsRaxData[x].f[6].v; //system
-		insertUser.u_zipcode = rowsRaxData[x].f[7].v; //zipcode
+		//insertUser.u_zipcode = rowsRaxData[x].f[7].v; //zipcode
 		insertUser.insert();
 	}
 }
