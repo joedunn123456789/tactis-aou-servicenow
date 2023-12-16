@@ -54,11 +54,11 @@ for (var x = 0; x < rowsRaxData.length; x++) {
 
 */
 	var user = new GlideRecord('sn_customerservice_participant');
-	user.addQuery('u_string_4', rowsRaxData[x].f[0].v);
-	//user.addQuery('u_string_1', rowsRaxData[x].f[1].v);
-	//user.addQuery('u_string_2', rowsRaxData[x].f[2].v);
-	//user.addQuery('u_string_3', rowsRaxData[x].f[3].v);
-	//user.addQuery('u_string_6', rowsRaxData[x].f[4].v);
+	user.addQuery('u_string_4', rowsRaxData[x].f[0].v); //u_string_4 is participant id
+	//user.addQuery('u_string_1', rowsRaxData[x].f[1].v); //u_string_1 is first name
+	//user.addQuery('u_string_2', rowsRaxData[x].f[2].v); //u_string_2 is middle name
+	//user.addQuery('u_string_3', rowsRaxData[x].f[3].v); //u_string_3 is last name
+	//user.addQuery('u_string_6', rowsRaxData[x].f[4].v); 
 	//user.addQuery('u_string_5', rowsRaxData[x].f[5].v);
 	//user.addQuery('u_string_7', rowsRaxData[x].f[6].v);
 	user.query();
