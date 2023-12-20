@@ -5,17 +5,15 @@ BigQueryConnectUtils.prototype = {
     getData: function () {
 
         var jwtAPI = new sn_auth.GlideJWTAPI();
-
         //         Header for JWT token 
         var headerJSON = {
             typ: "JWT",
             alg: "RSA256"
         };
         var header = JSON.stringify(headerJSON);
-
-        //         claims for JWT where iss --> issuer (service account from GCP)
-
-        // 		gdo-gcp-snow-svc@rax-landing.iam.gserviceaccount.com
+        //    claims for JWT where iss --> issuer (service account from GCP)
+        //    gdo-gcp-snow-svc@rax-landing.iam.gserviceaccount.com
+        //    service account for drc-api is awardee-tactis@all-of-us-rdr-stable.iam.gserviceaccount.com
         var payloadJSON = {
             "iss": "awardee-tactis@all-of-us-rdr-stable.iam.gserviceaccount.com",
             "sub": "awardee-tactis@all-of-us-rdr-stable.iam.gserviceaccount.com",
@@ -56,7 +54,8 @@ BigQueryConnectUtils.prototype = {
                 
         */
         var body = {
-            // "query": "select * from spotlight-analytics-388311.test.roster;",
+            // query table all-of-us-rdr-stable.drc_to_tactis_data.partcipant_information_to_tactis
+            // "query": "select * from spotlight-analytics-388311.test.roster;",            
             "query": "SELECT * FROM `all-of-us-rdr-stable.drc_to_tactis_data.particpant_information_to_tactis`;",
             "useLegacySql": false
         };
