@@ -13,10 +13,15 @@ BigQueryConnectUtils.prototype = {
         var header = JSON.stringify(headerJSON);
         //    claims for JWT where iss --> issuer (service account from GCP)
         //    gdo-gcp-snow-svc@rax-landing.iam.gserviceaccount.com
-        //    service account for drc-api is awardee-tactis@all-of-us-rdr-stable.iam.gserviceaccount.com
+        //    service account for drc-api testing is awardee-tactis@all-of-us-rdr-stable.iam.gserviceaccount.com
+        //    service account for drc-api prod is awardee-tactis@all-of-us-rdr-prod.iam.gserviceaccount.com 
         var payloadJSON = {
-            "iss": "awardee-tactis@all-of-us-rdr-stable.iam.gserviceaccount.com",
-            "sub": "awardee-tactis@all-of-us-rdr-stable.iam.gserviceaccount.com",
+            //For Testing
+            //"iss": "awardee-tactis@all-of-us-rdr-stable.iam.gserviceaccount.com",
+            "iss": "awardee-tactis@all-of-us-rdr-prod.iam.gserviceaccount.com",
+            //For Testing
+            //"sub": "awardee-tactis@all-of-us-rdr-stable.iam.gserviceaccount.com",
+            "sub": "awardee-tactis@all-of-us-rdr-prod.iam.gserviceaccount.com",
             "scope": "https://www.googleapis.com/auth/bigquery",
             "aud": "https://oauth2.googleapis.com/token",
             "exp": 1328554385,
@@ -56,13 +61,15 @@ BigQueryConnectUtils.prototype = {
         var body = {
             // query table all-of-us-rdr-stable.drc_to_tactis_data.partcipant_information_to_tactis
             // "query": "select * from spotlight-analytics-388311.test.roster;",            
-            "query": "SELECT * FROM `all-of-us-rdr-stable.drc_to_tactis_data.particpant_information_to_tactis`;",
+            //"query": "SELECT * FROM `all-of-us-rdr-stable.drc_to_tactis_data.particpant_information_to_tactis`;",
+            query": "SELECT * FROM `all-of-us-rdr-prod.drc_to_tactis_data.particpant_information_to_tactis`;",
             "useLegacySql": false
         };
 
         // 		Accessing the endpoint with the access token created in JSON format in line 44, and then parsing the JSON saved access token in line 47.
         var raxRoasterTable = new sn_ws.RESTMessageV2();
-        raxRoasterTable.setEndpoint('https://bigquery.googleapis.com/bigquery/v2/projects/all-of-us-rdr-stable/queries');
+        //raxRoasterTable.setEndpoint('https://bigquery.googleapis.com/bigquery/v2/projects/all-of-us-rdr-stable/queries');
+        raxRoasterTable.setEndpoint('https://bigquery.googleapis.com/bigquery/v2/projects/all-of-us-rdr-prod/queries');
         raxRoasterTable.setHttpMethod('POST');
         raxRoasterTable.setRequestHeader('authorization', 'Bearer ' + accessToken);
         raxRoasterTable.setRequestHeader("accept", "application/json");
