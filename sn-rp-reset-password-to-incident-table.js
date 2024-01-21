@@ -1,5 +1,10 @@
-//servicenow record producer script
-//placeholder script summary
+/**
+ * This script is associated with a ServiceNow record producer for password reset requests.
+ * It compiles essential details, including caller, system, and contact information, to be stored in the incident record.
+ * The script sets work notes and descriptions, generates a status tracking link based on device type,
+ * and provides an informative message to the user about the incident status.
+ * Additionally, it links the record producer to the parent incident for reference.
+ */
 var notes = "Please contact customer with new password via: " + producer.contact_me;
 notes += "\nCaller : " + producer.caller_id.getDisplayValue();
 notes += "\nSystem : " + producer.cmdb_ci.getDisplayValue();
