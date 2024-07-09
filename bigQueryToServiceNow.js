@@ -1,18 +1,25 @@
-var raxDataJSON = new BigQueryConnectUtils().getData(); //Script include to connect GCP 
+//In Servicenow authenticates and pulls data from bigquery page
+
+//calls script include
+var raxDataJSON = new BigQueryConnectUtils().getData(); 
 var raxDataParse = JSON.parse(raxDataJSON);
 
 //return columns data in format of object for example : [{"name": "email","type": "STRING","mode": "NULLABLE"},{"name": "level00","type": "STRING","mode":"NULLABLE"}]
 var columnsJSON = raxDataParse.schema.fields;
 
-var columnsTitleValue = []; //store columns title name in array
+//store columns title name in array
+var columnsTitleValue = [];
 
 for (var i = 0; i < columnsJSON.length; i++) {
 	columnsTitleValue.push(columnsJSON[i].name);
 }
 
-var totalCount = raxDataParse.totalRows; //total count in BigQuery table
-var rowsRaxData = raxDataParse.rows; //its return array
+//total count in BigQuery table
+var totalCount = raxDataParse.totalRows;
+//its return array
+var rowsRaxData = raxDataParse.rows;
 
+//this function does not work. when enabled it takes one record in servicenow and updates it multiple times with new information
 /*function getPID(u_string_4) {
 	if (u_string_4) {
 		var user = new GlideRecord('sn_customerservice_participant');
